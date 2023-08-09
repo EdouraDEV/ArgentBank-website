@@ -1,7 +1,6 @@
-import Banner from '../containers/Banner'
-import Features from '../containers/Features'
-import Header from '../containers/Header'
-
+import Banner from "../containers/Banner";
+import Features from "../containers/Features";
+import Header from "../containers/Header";
 
 function Home() {
   return (
@@ -14,5 +13,5 @@ function Home() {
     </>
   );
 }
-  
-export default Home
+
+export default Home;
