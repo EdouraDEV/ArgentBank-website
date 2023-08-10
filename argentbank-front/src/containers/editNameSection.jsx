@@ -85,7 +85,7 @@ export default function App() {
               onClick={(e) => {
                 e.preventDefault();
                 dispatch(editUserName({ userName: userName, token: token }));
-                dispatch(reverseClick);
+                reverseClick();
               }}
             >
               Save
@@ -94,7 +94,7 @@ export default function App() {
               className="userName_button"
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(reverseClick);
+                reverseClick();
               }}
             >
               Delete
