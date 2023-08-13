@@ -31,6 +31,8 @@ paths:
             $ref: "#/definitions/LoginResponse"
         "400":
           description: Invalid Fields
+        "401":
+          description: Unauthorized
         "500":
           description: Internal Server Error
   /user/signup:
@@ -55,6 +57,8 @@ paths:
             $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid Fields
+        "401":
+          description: Unauthorized
         "500":
           description: Internal Server Error
   /user/profile:
@@ -65,15 +69,15 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-      # - application/json
       responses:
         "200":
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid Fields
+        "401":
+          description: Unauthorized
         "500":
           description: Internal Server Error
     put:
@@ -94,14 +98,16 @@ paths:
         - application/json
       responses:
         "200":
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid Fields
+        "401":
+          description: Unauthorized
         "500":
           description: Internal Server Error
-  /user/accounts/{accountId}:
+  /accounts/{accountId}:
     get:
       security:
         - Bearer: []
@@ -122,9 +128,13 @@ paths:
             $ref: "#/definitions/UserAccount"
         "400":
           description: Invalid Fields
+        "401":
+          description: Unauthorized
+        "422":
+          description: Unprocessable Entity
         "500":
           description: Internal Server Error
-  /user/accounts/{accountId}/transactions:
+  /accounts/{accountId}/transactions/{transactionId}:
     get:
       security:
         - Bearer: []
@@ -138,6 +148,11 @@ paths:
           description: User's account ID
           type: integer
           required: true
+        - in: path
+          name: transactionId
+          description: Transaction ID
+          type: integer
+          required: true
       responses:
         "200":
           description: Account's transactions retrieved successfully
@@ -145,6 +160,10 @@ paths:
             $ref: "#/definitions/AccountTransactions"
         "400":
           description: Invalid Fields
+        "401":
+          description: Unauthorized
+        "422":
+          description: Unprocessable Entity
         "500":
           description: Internal Server Error
     put:
@@ -166,15 +185,24 @@ paths:
           description: User's account ID
           type: integer
           required: true
+        - in: path
+          name: transactionId
+          description: Transaction ID
+          type: integer
+          required: true
       produces:
         - application/json
       responses:
         "200":
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid Fields
+        "401":
+          description: Unauthorized
+        "422":
+          description: Unprocessable Entity
         "500":
           description: Internal Server Error
 securityDefinitions:
@@ -263,8 +291,6 @@ definitions:
           description:
             type: string
           amount:
-            type: string
-          balance:
             type: string
           type:
             type: string
